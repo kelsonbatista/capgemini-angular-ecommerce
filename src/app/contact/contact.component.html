@@ -1,12 +1,105 @@
 <h2 class="contact__title">Entre em contato</h2>
 <section class="contact__container">
-  <form action="" class="contact-form">
-    <input type="text" name="name" id="name" placeholder='Digite seu nome'>
-    <input type="text" name="phone" id="phone" placeholder='(00)00000-0000'>
-    <input type="email" name="email" id="email" placeholder='Digite seu email'>
-    <input type="tel" name="subject" id="subject" placeholder='Digite o assunto'>
-    <textarea name="message" id="message" maxlength='300' placeholder='Digite sua mensagem'></textarea>
-    <button type='button'>Enviar</button>
+  <form action="" class="contact-form" [formGroup]="contactForm" (ngSubmit)="submitForm()">
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder='Digite seu nome'
+      formControlName='name'
+      [class.valid]="contactForm.controls.name.valid"
+      [class.invalid]="contactForm.controls.name.invalid && 
+      (contactForm.controls.name.touched || contactForm.controls.name.dirty)"
+    />
+    <div *ngIf="contactForm.controls.name.invalid && 
+    (contactForm.controls.name.touched || contactForm.controls.name.dirty)">
+      <small class="error-message" *ngIf="contactForm.controls.name.hasError('minlength')">
+        Nome precisa ter no mínimo 4 caracteres
+      </small>
+      <small class="error-message" *ngIf="contactForm.controls.name.hasError('required')">
+        Nome é obrigatório
+      </small>
+    </div>
+    <input
+      type="tel"
+      name="phone"
+      id="phone"
+      formControlName='phone'
+      mask='(00) 00000-0000'
+      placeholder='(00)00000-0000'
+      [class.valid]="contactForm.controls.phone.valid"
+      [class.invalid]="contactForm.controls.phone.invalid && 
+      (contactForm.controls.phone.touched || contactForm.controls.phone.dirty)"
+    />
+    <div *ngIf="contactForm.controls.phone.invalid && 
+    (contactForm.controls.phone.touched || contactForm.controls.phone.dirty)">
+      <small class="error-message" *ngIf="contactForm.controls.phone.hasError('minlength')">
+        Telefone precisa ter 11 caracteres
+      </small>
+      <small class="error-message" *ngIf="contactForm.controls.phone.hasError('required')">
+        Telefone é obrigatório
+      </small>
+    </div>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      formControlName='email'
+      placeholder='Digite seu email'
+      [class.valid]="contactForm.controls.email.valid"
+      [class.invalid]="contactForm.controls.email.invalid && 
+      (contactForm.controls.email.touched || contactForm.controls.email.dirty)"
+    />
+    <div *ngIf="contactForm.controls.email.invalid && 
+    (contactForm.controls.email.touched || contactForm.controls.email.dirty)">
+      <small class="error-message" *ngIf="contactForm.controls.email.hasError('email')">
+        Formato inválido de email
+      </small>
+      <small class="error-message" *ngIf="contactForm.controls.email.hasError('required')">
+        Email é obrigatório
+      </small>
+    </div>
+    <input
+      type="text"
+      name="subject"
+      id="subject"
+      formControlName='subject'
+      placeholder='Digite o assunto'
+      [class.valid]="contactForm.controls.subject.valid"
+      [class.invalid]="contactForm.controls.subject.invalid && 
+      (contactForm.controls.subject.touched || contactForm.controls.subject.dirty)"
+    />
+    <div *ngIf="contactForm.controls.subject.invalid && 
+    (contactForm.controls.subject.touched || contactForm.controls.subject.dirty)">
+      <small class="error-message" *ngIf="contactForm.controls.subject.hasError('minlength')">
+        Assunto precisa ter no mínimo 10 caracteres
+      </small>
+      <small class="error-message" *ngIf="contactForm.controls.subject.hasError('required')">
+        Assunto é obrigatório
+      </small>
+    </div>
+    <textarea
+      name="message"
+      id="message"
+      maxlength='300'
+      placeholder='Digite sua mensagem'
+      rows='6'
+      formControlName='message'
+      placeholder='Digite o assunto'
+      [class.valid]="contactForm.controls.message.valid"
+      [class.invalid]="contactForm.controls.message.invalid && 
+      (contactForm.controls.message.touched || contactForm.controls.message.dirty)"
+    ></textarea>
+    <div *ngIf="contactForm.controls.message.invalid && 
+    (contactForm.controls.message.touched || contactForm.controls.message.dirty)">
+      <small class="error-message" *ngIf="contactForm.controls.message.hasError('minlength')">
+        A mensagem precisa ter no mínimo 20 caracteres
+      </small>
+      <small class="error-message" *ngIf="contactForm.controls.message.hasError('required')">
+        A mensagem é obrigatória
+      </small>
+    </div>
+    <button type='submit' [disabled]="contactForm.invalid">Enviar</button>
   </form>
   <address>
     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14230.300361031368!2d-49.0703074!3d-26.9169772!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa5ec9dd8406a6a7!2sProWay!5e0!3m2!1spt-BR!2sbr!4v1667674743638!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
