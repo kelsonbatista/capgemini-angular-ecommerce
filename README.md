@@ -29,3 +29,6 @@ This is an Angular project developed for Capgemini's Start Program, where the ob
 - run 'npm start' to start the server / *execute 'npm start' para iniciar o servidor*
 - Access http://localhost:4200/ / *Acesse http://localhost:4200/*
 
+See it in action/ **Veja em ação**: [https://kelsonbatista.github.io/capgemini-angular-ecommerce/](https://kelsonbatista.github.io/capgemini-angular-ecommerce)
+
+
